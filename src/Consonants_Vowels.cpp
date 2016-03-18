@@ -1,5 +1,6 @@
 /*
-OVERVIEW: Given a string, Count the number of consonants and vowels and copy them to 'consonants' and 'vowels' respectively
+OVERVIEW: Given a string, Count the number of consonants and vowels and copy them to 'consonants' and 'vowels'
+respectively
 Notes : Neglect Space and Other Symbols .Consider Capital Letters too
 
 E.g.: Input: "aB c" , Output: consonants should contain 2 and vowels 1
@@ -21,6 +22,24 @@ NOTES: Don't create new string , Dont return anything ,you have been given two p
 
 
 void count_vowels_and_consonants(char *str,int *consonants, int *vowels){
-
+	if ((str != NULL) && (str != ""))
+	{
+		int v = 0, c = 0;
+		for (int i = 0; str[i] != '\0'; i++){
+			if (((str[i] >= 'A') && (str[i] <= 'Z')) || ((str[i] >= 'a') && (str[i] <= 'z'))){
+				if (str[i] == 'A' || str[i] == 'E' || str[i] == 'I' || str[i] == 'O' || str[i] == 'U' || str[i] == 'a' || str[i] == 'e' || str[i] == 'i' || str[i] == 'o' || str[i] == 'u')
+					v++;
+				else
+					c++;
+			}
+		}
+		*vowels = v;
+		*consonants = c;
+	}
+	else
+	{
+		*consonants = 0;
+		*vowels = 0;
+	}
 
 }
