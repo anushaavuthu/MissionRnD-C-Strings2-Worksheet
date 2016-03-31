@@ -9,6 +9,7 @@ Note:Dont modify original string Neglect Spaces at the right end and at left end
 ->Create a new string and return it , Use dynamic memory allocation .
 */
 #include <stdlib.h>
+
 int length(char* str)
 {
 	int i;
@@ -17,31 +18,34 @@ int length(char* str)
 }
 char * get_last_word(char * str){
 	if ((str == "")){
-		return str;
+		return "";
 	}
 	else if ((str != NULL))
 	{
-		/*
-		char sentences[][100] = {"abc is a word","he he","   ","d ab   ","  x","asd324","","a"};
-		char ans[][100] = { "word", "he","","ab","x","asd324","","a"};
 
-		*/
-		char* res = (char*)malloc(sizeof(char)*10);
-		int i, len, p = 0;
-		len = length(str);
-		int k = len - 1;
-		while ((str[k] == ' ') && (k >= 0)) {
-			k--;
+		//	char sentences[][100] = {"abc is a word","he he","   ","d ab   ","  x","asd324","","a"};
+		//	char ans[][100] = { "word", "he","","ab","x","asd324","","a"};
+		int len = length(str);
+		int i = len - 1;
+		while (str[i] == ' ' && i >= 0){
+			i = i - 1;
 		}
-		if (k == -1){
+		if (i == -1){
 			return "";
 		}
-		for (i = k; (str[i] != ' ') && (i >= 0); i--);
+		str[i + 1] = '\0';
+		len = length(str);
+		char* res = (char*)malloc(sizeof(char) * 10);
+		int  p = 0;
+		i = len - 1;
+		while (str[i] != ' ' && i >= 0){
+			i--;
+		}
 		if (i == -1){
 			return str;
 		}
-		for (int m = i + 1; str[m] != '\0'; m++){
-			res[p++] = str[m];
+		for (int k = i + 1; str[k]; k++){
+			res[p++] = str[k];
 		}
 		res[p] = '\0';
 		return res;
